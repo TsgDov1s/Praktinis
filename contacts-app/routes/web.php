@@ -16,3 +16,14 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
 });
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::middleware('auth')->group(function () {
+    // All your authenticated routes here
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    // Add other protected routes...
+});
